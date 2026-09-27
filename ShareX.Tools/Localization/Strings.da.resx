@@ -800,6 +800,18 @@ Filsti: {0}</value>
   <data name="ImageCombinerWindow_Vertical" xml:space="preserve">
     <value>Lodret</value>
   </data>
+  <data name="ImageCombinerWindow_Grid" xml:space="preserve">
+    <value>Gitter (rækker og kolonner)</value>
+  </data>
+  <data name="ImageCombinerWindow_Images_per_row" xml:space="preserve">
+    <value>Billeder pr. række:</value>
+  </data>
+  <data name="ImageCombinerWindow_Grid_order" xml:space="preserve">
+    <value>Billederne placeres i hver række fra venstre mod højre i listens rækkefølge.</value>
+  </data>
+  <data name="ImageCombinerViewModel_Grid_size" xml:space="preserve">
+    <value>Rækker: {0} · Kolonner: {1}</value>
+  </data>
   <data name="ImageCombinerWindow_Wrap_after" xml:space="preserve">
     <value>Linjeombrydning efter</value>
   </data>

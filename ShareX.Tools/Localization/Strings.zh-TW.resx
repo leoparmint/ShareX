@@ -800,6 +800,18 @@
   <data name="ImageCombinerWindow_Vertical" xml:space="preserve">
     <value>垂直</value>
   </data>
+  <data name="ImageCombinerWindow_Grid" xml:space="preserve">
+    <value>網格（列與欄）</value>
+  </data>
+  <data name="ImageCombinerWindow_Images_per_row" xml:space="preserve">
+    <value>每列圖片數：</value>
+  </data>
+  <data name="ImageCombinerWindow_Grid_order" xml:space="preserve">
+    <value>圖片依清單順序由左至右填入每一列。</value>
+  </data>
+  <data name="ImageCombinerViewModel_Grid_size" xml:space="preserve">
+    <value>列數：{0} · 欄數：{1}</value>
+  </data>
   <data name="ImageCombinerWindow_Wrap_after" xml:space="preserve">
     <value>換行數量</value>
   </data>

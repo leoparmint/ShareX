@@ -796,6 +796,18 @@
   <data name="ImageCombinerWindow_Vertical" xml:space="preserve">
     <value>縦方向</value>
   </data>
+  <data name="ImageCombinerWindow_Grid" xml:space="preserve">
+    <value>グリッド（行と列）</value>
+  </data>
+  <data name="ImageCombinerWindow_Images_per_row" xml:space="preserve">
+    <value>1 行あたりの画像数:</value>
+  </data>
+  <data name="ImageCombinerWindow_Grid_order" xml:space="preserve">
+    <value>画像はリストの順序で、各行の左から右へ配置されます。</value>
+  </data>
+  <data name="ImageCombinerViewModel_Grid_size" xml:space="preserve">
+    <value>行: {0} · 列: {1}</value>
+  </data>
   <data name="ImageCombinerWindow_Wrap_after" xml:space="preserve">
     <value>折り返す数</value>
   </data>

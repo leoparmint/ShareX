@@ -796,6 +796,18 @@
   <data name="ImageCombinerWindow_Vertical" xml:space="preserve">
     <value>แนวตั้ง</value>
   </data>
+  <data name="ImageCombinerWindow_Grid" xml:space="preserve">
+    <value>ตาราง (แถวและคอลัมน์)</value>
+  </data>
+  <data name="ImageCombinerWindow_Images_per_row" xml:space="preserve">
+    <value>จำนวนภาพต่อแถว:</value>
+  </data>
+  <data name="ImageCombinerWindow_Grid_order" xml:space="preserve">
+    <value>ภาพจะถูกจัดเรียงในแต่ละแถวจากซ้ายไปขวาตามลำดับในรายการ</value>
+  </data>
+  <data name="ImageCombinerViewModel_Grid_size" xml:space="preserve">
+    <value>แถว: {0} · คอลัมน์: {1}</value>
+  </data>
   <data name="ImageCombinerWindow_Wrap_after" xml:space="preserve">
     <value>ตัดบรรทัดหลังจาก</value>
   </data>

@@ -31,6 +31,8 @@ namespace ShareX.Tools
         public ImageCombinerAlignment Alignment { get; set; } = ImageCombinerAlignment.LeftOrTop;
         public int Space { get; set; } = 0;
         public int WrapAfter { get; set; } = 0;
+        public bool UseGrid { get; set; } = false;
+        public int GridColumns { get; set; } = 3;
         public bool AutoFillBackground { get; set; } = true;
     }
 }

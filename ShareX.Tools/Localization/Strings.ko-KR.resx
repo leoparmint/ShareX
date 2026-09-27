@@ -796,6 +796,18 @@
   <data name="ImageCombinerWindow_Vertical" xml:space="preserve">
     <value>세로</value>
   </data>
+  <data name="ImageCombinerWindow_Grid" xml:space="preserve">
+    <value>격자 (행과 열)</value>
+  </data>
+  <data name="ImageCombinerWindow_Images_per_row" xml:space="preserve">
+    <value>행당 이미지 수:</value>
+  </data>
+  <data name="ImageCombinerWindow_Grid_order" xml:space="preserve">
+    <value>이미지는 목록 순서대로 각 행의 왼쪽에서 오른쪽으로 배치됩니다.</value>
+  </data>
+  <data name="ImageCombinerViewModel_Grid_size" xml:space="preserve">
+    <value>행: {0} · 열: {1}</value>
+  </data>
   <data name="ImageCombinerWindow_Wrap_after" xml:space="preserve">
     <value>다음 개수 후 줄 바꿈</value>
   </data>

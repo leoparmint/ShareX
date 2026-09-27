@@ -796,6 +796,18 @@
   <data name="ImageCombinerWindow_Vertical" xml:space="preserve">
     <value>Függőleges</value>
   </data>
+  <data name="ImageCombinerWindow_Grid" xml:space="preserve">
+    <value>Rács (sorok és oszlopok)</value>
+  </data>
+  <data name="ImageCombinerWindow_Images_per_row" xml:space="preserve">
+    <value>Képek soronként:</value>
+  </data>
+  <data name="ImageCombinerWindow_Grid_order" xml:space="preserve">
+    <value>A képek soronként balról jobbra, a lista sorrendjében helyezkednek el.</value>
+  </data>
+  <data name="ImageCombinerViewModel_Grid_size" xml:space="preserve">
+    <value>Sorok: {0} · Oszlopok: {1}</value>
+  </data>
   <data name="ImageCombinerWindow_Wrap_after" xml:space="preserve">
     <value>Tördelés ennyi után</value>
   </data>

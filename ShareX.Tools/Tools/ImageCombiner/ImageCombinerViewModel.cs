@@ -46,7 +46,6 @@ public sealed partial class ImageCombinerViewModel : ViewModelBase, IDisposable
 
     [ObservableProperty]
     [NotifyPropertyChangedFor(nameof(IsVertical))]
-    [NotifyPropertyChangedFor(nameof(AlignmentOptions))]
     private bool _isHorizontal;
 
     [ObservableProperty]
@@ -57,6 +56,15 @@ public sealed partial class ImageCombinerViewModel : ViewModelBase, IDisposable
 
     [ObservableProperty]
     private decimal _wrapAfter;
+
+    [ObservableProperty]
+    private bool _useGrid;
+
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(GridRows))]
+    [NotifyPropertyChangedFor(nameof(GridColumnCount))]
+    [NotifyPropertyChangedFor(nameof(GridSizeText))]
+    private decimal _gridColumns;
 
     [ObservableProperty]
     private bool _autoFillBackground;
@@ -82,6 +90,8 @@ public sealed partial class ImageCombinerViewModel : ViewModelBase, IDisposable
         _selectedAlignmentIndex = (int)options.Alignment;
         _space = options.Space;
         _wrapAfter = options.WrapAfter;
+        _useGrid = options.UseGrid;
+        _gridColumns = Math.Clamp(options.GridColumns, 1, 1000);
         _autoFillBackground = options.AutoFillBackground;
 
         AddFiles(imageFiles);
@@ -101,11 +111,15 @@ public sealed partial class ImageCombinerViewModel : ViewModelBase, IDisposable
         }
     }
 
-    public IReadOnlyList<string> AlignmentOptions => IsHorizontal
+    public IReadOnlyList<string> AlignmentOptions => UseGrid || IsHorizontal
         ? [Localization.Strings.ImageCombinerViewModel_Top, Localization.Strings.ImageCombinerViewModel_Center, Localization.Strings.ImageCombinerViewModel_Bottom]
         : [Localization.Strings.ImageCombinerViewModel_Left, Localization.Strings.ImageCombinerViewModel_Center, Localization.Strings.ImageCombinerViewModel_Right];
 
     public bool HasPreview => PreviewImage != null;
+    private int EffectiveGridColumns => (int)Math.Clamp(GridColumns, 1, 1000);
+    public int GridRows => (int)Math.Ceiling((double)Images.Count / EffectiveGridColumns);
+    public int GridColumnCount => Math.Min(Images.Count, EffectiveGridColumns);
+    public string GridSizeText => string.Format(Localization.Strings.ImageCombinerViewModel_Grid_size, GridRows, GridColumnCount);
     public bool HasImages => Images.Count > 0;
     public bool CanCombine => Images.Count > 1 && !IsBusy;
     public bool CanRemove => _selectedImages.Count > 0 || SelectedImage != null;
@@ -218,15 +232,44 @@ public sealed partial class ImageCombinerViewModel : ViewModelBase, IDisposable
 
     partial void OnIsHorizontalChanged(bool value)
     {
-        OnPropertyChanged(nameof(IsVertical));
-        OnPropertyChanged(nameof(AlignmentOptions));
+        RefreshAlignmentOptions();
         OptionsChanged();
     }
 
-    partial void OnSelectedAlignmentIndexChanged(int value) => OptionsChanged();
+    partial void OnSelectedAlignmentIndexChanged(int value)
+    {
+        if (value >= 0)
+        {
+            OptionsChanged();
+        }
+    }
     partial void OnSpaceChanged(decimal value) => OptionsChanged();
     partial void OnWrapAfterChanged(decimal value) => OptionsChanged();
+    partial void OnUseGridChanged(bool value)
+    {
+        RefreshAlignmentOptions();
+        OptionsChanged();
+    }
+
+    partial void OnGridColumnsChanged(decimal value)
+    {
+        decimal columns = decimal.Truncate(Math.Clamp(value, 1, 1000));
+        if (value != columns)
+        {
+            GridColumns = columns;
+            return;
+        }
+
+        OptionsChanged();
+    }
     partial void OnAutoFillBackgroundChanged(bool value) => OptionsChanged();
+
+    private void RefreshAlignmentOptions()
+    {
+        int alignmentIndex = Math.Clamp(SelectedAlignmentIndex, 0, 2);
+        OnPropertyChanged(nameof(AlignmentOptions));
+        SelectedAlignmentIndex = alignmentIndex;
+    }
 
     private void OptionsChanged()
     {
@@ -234,6 +277,8 @@ public sealed partial class ImageCombinerViewModel : ViewModelBase, IDisposable
         _options.Alignment = (ImageCombinerAlignment)Math.Clamp(SelectedAlignmentIndex, 0, 2);
         _options.Space = (int)Space;
         _options.WrapAfter = (int)WrapAfter;
+        _options.UseGrid = UseGrid;
+        _options.GridColumns = EffectiveGridColumns;
         _options.AutoFillBackground = AutoFillBackground;
         _ = RefreshPreviewAsync();
     }
@@ -241,6 +286,9 @@ public sealed partial class ImageCombinerViewModel : ViewModelBase, IDisposable
     private void CollectionChanged()
     {
         OnPropertyChanged(nameof(ImageCountText));
+        OnPropertyChanged(nameof(GridRows));
+        OnPropertyChanged(nameof(GridColumnCount));
+        OnPropertyChanged(nameof(GridSizeText));
         OnPropertyChanged(nameof(HasImages));
         NotifyStateChanged();
         _ = RefreshPreviewAsync();
@@ -258,10 +306,12 @@ public sealed partial class ImageCombinerViewModel : ViewModelBase, IDisposable
     {
         ImageCombinerOptions options = new ImageCombinerOptions
         {
-            Orientation = IsHorizontal ? ImageCombinerOrientation.Horizontal : ImageCombinerOrientation.Vertical,
+            Orientation = UseGrid || IsHorizontal ? ImageCombinerOrientation.Horizontal : ImageCombinerOrientation.Vertical,
             Alignment = (ImageCombinerAlignment)Math.Clamp(SelectedAlignmentIndex, 0, 2),
             Space = (int)Space,
-            WrapAfter = (int)WrapAfter,
+            WrapAfter = UseGrid ? EffectiveGridColumns : (int)WrapAfter,
+            UseGrid = UseGrid,
+            GridColumns = EffectiveGridColumns,
             AutoFillBackground = AutoFillBackground
         };
         return new ImageCombineRequest(Images.ToArray(), options);

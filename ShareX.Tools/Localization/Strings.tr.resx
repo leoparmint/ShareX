@@ -800,6 +800,18 @@ Dosya yolu: {0}</value>
   <data name="ImageCombinerWindow_Vertical" xml:space="preserve">
     <value>Dikey</value>
   </data>
+  <data name="ImageCombinerWindow_Grid" xml:space="preserve">
+    <value>Izgara (satırlar ve sütunlar)</value>
+  </data>
+  <data name="ImageCombinerWindow_Images_per_row" xml:space="preserve">
+    <value>Satır başına resim:</value>
+  </data>
+  <data name="ImageCombinerWindow_Grid_order" xml:space="preserve">
+    <value>Resimler her satıra soldan sağa, listedeki sıraya göre yerleştirilir.</value>
+  </data>
+  <data name="ImageCombinerViewModel_Grid_size" xml:space="preserve">
+    <value>Satırlar: {0} · Sütunlar: {1}</value>
+  </data>
   <data name="ImageCombinerWindow_Wrap_after" xml:space="preserve">
     <value>Şundan sonra yeni satıra geçir</value>
   </data>

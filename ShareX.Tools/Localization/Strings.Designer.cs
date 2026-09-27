@@ -23,6 +23,14 @@ namespace ShareX.Tools.Localization {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Strings {
+
+        public static string ImageCombinerWindow_Grid => ResourceManager.GetString("ImageCombinerWindow_Grid", resourceCulture);
+
+        public static string ImageCombinerWindow_Images_per_row => ResourceManager.GetString("ImageCombinerWindow_Images_per_row", resourceCulture);
+
+        public static string ImageCombinerWindow_Grid_order => ResourceManager.GetString("ImageCombinerWindow_Grid_order", resourceCulture);
+
+        public static string ImageCombinerViewModel_Grid_size => ResourceManager.GetString("ImageCombinerViewModel_Grid_size", resourceCulture);
         
         public static string MouseHighlighter_Title => ResourceManager.GetString("MouseHighlighter_Title", resourceCulture);
 

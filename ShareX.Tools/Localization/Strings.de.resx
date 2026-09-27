@@ -800,6 +800,18 @@ Dateipfad: {0}</value>
   <data name="ImageCombinerWindow_Vertical" xml:space="preserve">
     <value>Vertikal</value>
   </data>
+  <data name="ImageCombinerWindow_Grid" xml:space="preserve">
+    <value>Raster (Zeilen und Spalten)</value>
+  </data>
+  <data name="ImageCombinerWindow_Images_per_row" xml:space="preserve">
+    <value>Bilder pro Zeile:</value>
+  </data>
+  <data name="ImageCombinerWindow_Grid_order" xml:space="preserve">
+    <value>Bilder werden zeilenweise von links nach rechts in der Reihenfolge der Liste angeordnet.</value>
+  </data>
+  <data name="ImageCombinerViewModel_Grid_size" xml:space="preserve">
+    <value>Zeilen: {0} · Spalten: {1}</value>
+  </data>
   <data name="ImageCombinerWindow_Wrap_after" xml:space="preserve">
     <value>Umbrechen nach</value>
   </data>

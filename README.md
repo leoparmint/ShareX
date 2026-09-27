@@ -1,3 +1,9 @@
+## Image combiner grid fork
+
+This fork adds an explicit **Grid (rows and columns)** option under **Tools → Image combiner**. For 15 images, choose **3 images per row** for 5 rows of 3, or **5 images per row** for 3 rows of 5. The preview and row/column counts update as you change the layout.
+
+See [grid usage and build instructions](IMAGE_COMBINER_GRID.md).
+
 <p align="center"><a href="https://getsharex.com"><img src="https://getsharex.com/img/ShareX_Banner.png" alt="ShareX Banner"/></a></p>
 <h3 align="center">Screen capture, file sharing and productivity tool</h3>
 <br>

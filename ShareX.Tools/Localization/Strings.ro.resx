@@ -796,6 +796,18 @@
   <data name="ImageCombinerWindow_Vertical" xml:space="preserve">
     <value>Vertical</value>
   </data>
+  <data name="ImageCombinerWindow_Grid" xml:space="preserve">
+    <value>Grilă (rânduri și coloane)</value>
+  </data>
+  <data name="ImageCombinerWindow_Images_per_row" xml:space="preserve">
+    <value>Imagini pe rând:</value>
+  </data>
+  <data name="ImageCombinerWindow_Grid_order" xml:space="preserve">
+    <value>Imaginile umplu fiecare rând de la stânga la dreapta, în ordinea din listă.</value>
+  </data>
+  <data name="ImageCombinerViewModel_Grid_size" xml:space="preserve">
+    <value>Rânduri: {0} · Coloane: {1}</value>
+  </data>
   <data name="ImageCombinerWindow_Wrap_after" xml:space="preserve">
     <value>Încadrare după</value>
   </data>

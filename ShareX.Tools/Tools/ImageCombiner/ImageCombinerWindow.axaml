@@ -17,7 +17,7 @@
 
         <Grid Background="{DynamicResource ShareX.Brush.Background.Main}">
             <Grid RowDefinitions="*,Auto" Margin="16" RowSpacing="12">
-                <Grid Grid.Row="0" ColumnDefinitions="440,*" ColumnSpacing="12">
+                <Grid Grid.Row="0" ColumnDefinitions="2*,3*" ColumnSpacing="12">
                     <Border Grid.Column="0" Classes="tool-panel" Padding="12">
                         <Grid RowDefinitions="Auto,*" RowSpacing="10">
                             <Grid Grid.Row="0" ColumnDefinitions="Auto,Auto,Auto,Auto,*" ColumnSpacing="8">
@@ -93,9 +93,29 @@
 
                     <Grid Grid.Column="1" RowDefinitions="Auto,*" RowSpacing="12">
                         <Border Grid.Row="0" Classes="tool-panel" Padding="16">
-                            <Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="10">
-                                <TextBlock Grid.Row="0" Classes="section-heading" Text="{x:Static localization:Strings.ImageCombinerWindow_Layout}"/>
-                                <Grid Grid.Row="1" ColumnDefinitions="120,*" ColumnSpacing="10">
+                            <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto" RowSpacing="10">
+                                <Grid Grid.Row="0" ColumnDefinitions="Auto,*" ColumnSpacing="12">
+                                    <TextBlock Grid.Column="0" Classes="section-heading" VerticalAlignment="Center"
+                                               Text="{x:Static localization:Strings.ImageCombinerWindow_Layout}"/>
+                                    <CheckBox Grid.Column="1" IsChecked="{Binding UseGrid}" HorizontalAlignment="Right">
+                                        <TextBlock Text="{x:Static localization:Strings.ImageCombinerWindow_Grid}" FontWeight="Normal"/>
+                                    </CheckBox>
+                                </Grid>
+                                <Grid Grid.Row="1" IsVisible="{Binding UseGrid}"
+                                      RowDefinitions="Auto,Auto" ColumnDefinitions="120,*" RowSpacing="8" ColumnSpacing="10">
+                                    <TextBlock Grid.Column="0" Classes="row-label"
+                                               Text="{x:Static localization:Strings.ImageCombinerWindow_Images_per_row}"/>
+                                    <NumericUpDown Grid.Column="1" Minimum="1" Maximum="1000"
+                                                   FormatString="0" Increment="1" AllowSpin="True"
+                                                   Value="{Binding GridColumns}"/>
+                                    <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Spacing="4">
+                                        <TextBlock Text="{Binding GridSizeText}"/>
+                                        <TextBlock Text="{x:Static localization:Strings.ImageCombinerWindow_Grid_order}"
+                                                   TextWrapping="Wrap" FontWeight="Normal"
+                                                   Foreground="{DynamicResource ShareX.Brush.Text.Secondary}"/>
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Grid.Row="1" IsVisible="{Binding !UseGrid}" ColumnDefinitions="120,*" ColumnSpacing="10">
                                     <TextBlock Grid.Column="0" Classes="row-label" Text="{x:Static localization:Strings.ImageCombinerWindow_Orientation}"/>
                                     <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="16">
                                         <RadioButton GroupName="Orientation" IsChecked="{Binding IsHorizontal}">
@@ -106,7 +126,7 @@
                                         </RadioButton>
                                     </StackPanel>
                                 </Grid>
-                                <Grid Grid.Row="2" ColumnDefinitions="120,*,120,*" ColumnSpacing="10">
+                                <Grid Grid.Row="2" ColumnDefinitions="Auto,*,Auto,*" ColumnSpacing="10">
                                     <TextBlock Grid.Column="0" Classes="row-label" Text="{x:Static localization:Strings.ImageCombinerWindow_Alignment}"/>
                                     <ComboBox Grid.Column="1"
                                               ItemsSource="{Binding AlignmentOptions}"
@@ -118,19 +138,19 @@
                                                    FormatString="0"
                                                    Value="{Binding Space}"/>
                                 </Grid>
-                                <Grid Grid.Row="3" ColumnDefinitions="120,*,120,*" ColumnSpacing="10">
+                                <Grid Grid.Row="3" IsVisible="{Binding !UseGrid}" ColumnDefinitions="120,*" ColumnSpacing="10">
                                     <TextBlock Grid.Column="0" Classes="row-label" Text="{x:Static localization:Strings.ImageCombinerWindow_Wrap_after}"/>
                                     <NumericUpDown Grid.Column="1"
                                                    Minimum="0"
                                                    Maximum="1000"
                                                    FormatString="0"
                                                    Value="{Binding WrapAfter}"/>
-                                    <CheckBox Grid.Column="2" Grid.ColumnSpan="2"
-                                              IsChecked="{Binding AutoFillBackground}"
-                                              VerticalAlignment="Center">
-                                        <TextBlock Text="{x:Static localization:Strings.ImageCombinerWindow_Auto_fill_background}" FontWeight="Normal"/>
-                                    </CheckBox>
                                 </Grid>
+                                <CheckBox Grid.Row="4"
+                                          IsChecked="{Binding AutoFillBackground}"
+                                          VerticalAlignment="Center">
+                                    <TextBlock Text="{x:Static localization:Strings.ImageCombinerWindow_Auto_fill_background}" FontWeight="Normal"/>
+                                </CheckBox>
                             </Grid>
                         </Border>
 
@@ -158,8 +178,11 @@
                     </Grid>
                 </Grid>
 
-                <Grid Grid.Row="1" ColumnDefinitions="Auto" HorizontalAlignment="Right">
-                    <Button Grid.Column="0"
+                <Grid Grid.Row="1" ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                    <TextBlock Grid.Column="0" Text="{Binding StatusText}" TextWrapping="Wrap"
+                               VerticalAlignment="Center" FontWeight="Normal"
+                               Foreground="{DynamicResource ShareX.Brush.Text.Secondary}"/>
+                    <Button Grid.Column="1"
                             Command="{Binding CombineCommand}"
                             IsEnabled="{Binding CanCombine}">
                         <StackPanel Orientation="Horizontal" Spacing="8">

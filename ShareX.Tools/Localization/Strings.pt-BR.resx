@@ -800,6 +800,18 @@ Caminho do arquivo: {0}</value>
   <data name="ImageCombinerWindow_Vertical" xml:space="preserve">
     <value>Vertical</value>
   </data>
+  <data name="ImageCombinerWindow_Grid" xml:space="preserve">
+    <value>Grade (linhas e colunas)</value>
+  </data>
+  <data name="ImageCombinerWindow_Images_per_row" xml:space="preserve">
+    <value>Imagens por linha:</value>
+  </data>
+  <data name="ImageCombinerWindow_Grid_order" xml:space="preserve">
+    <value>As imagens preenchem cada linha da esquerda para a direita, na ordem da lista.</value>
+  </data>
+  <data name="ImageCombinerViewModel_Grid_size" xml:space="preserve">
+    <value>Linhas: {0} · Colunas: {1}</value>
+  </data>
   <data name="ImageCombinerWindow_Wrap_after" xml:space="preserve">
     <value>Quebrar após</value>
   </data>

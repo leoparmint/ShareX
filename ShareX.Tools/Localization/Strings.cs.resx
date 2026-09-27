@@ -800,6 +800,18 @@ Cesta k souboru: {0}</value>
   <data name="ImageCombinerWindow_Vertical" xml:space="preserve">
     <value>Svisle</value>
   </data>
+  <data name="ImageCombinerWindow_Grid" xml:space="preserve">
+    <value>Mřížka (řádky a sloupce)</value>
+  </data>
+  <data name="ImageCombinerWindow_Images_per_row" xml:space="preserve">
+    <value>Obrázků na řádek:</value>
+  </data>
+  <data name="ImageCombinerWindow_Grid_order" xml:space="preserve">
+    <value>Obrázky vyplňují každý řádek zleva doprava v pořadí podle seznamu.</value>
+  </data>
+  <data name="ImageCombinerViewModel_Grid_size" xml:space="preserve">
+    <value>Řádky: {0} · Sloupce: {1}</value>
+  </data>
   <data name="ImageCombinerWindow_Wrap_after" xml:space="preserve">
     <value>Zalomit po</value>
   </data>
