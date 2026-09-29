@@ -1847,6 +1847,36 @@
   <data name="MainWindow_Vertically" xml:space="preserve">
     <value>عمودياً</value>
   </data>
+  <data name="MainWindow_WorkspaceOpenImages" xml:space="preserve">
+    <value>فتح صور…</value>
+  </data>
+  <data name="MainWindow_WorkspaceSelectImage" xml:space="preserve">
+    <value>اختر صورة من شريط الصور المصغّرة، أو افتح صورًا للبدء.</value>
+  </data>
+  <data name="MainWindow_WorkspacePreviousImage" xml:space="preserve">
+    <value>الصورة السابقة</value>
+  </data>
+  <data name="MainWindow_WorkspaceNextImage" xml:space="preserve">
+    <value>الصورة التالية</value>
+  </data>
+  <data name="MainWindow_WorkspaceImages" xml:space="preserve">
+    <value>صور</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesMessage" xml:space="preserve">
+    <value>توجد تغييرات غير محفوظة.
+
+هل تريد حفظ التغييرات قبل إغلاق محرر الصور؟</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesTitle" xml:space="preserve">
+    <value>تأكيد الخروج</value>
+  </data>
+  <data name="MainWindow_WorkspaceLoadFailed" xml:space="preserve">
+    <value>تعذر تحميل ملف الصورة.
+{0}</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveAs" xml:space="preserve">
+    <value>حفظ الصورة باسم</value>
+  </data>
   <data name="MouseHighlighter" xml:space="preserve">
     <value>تمييز الماوس</value>
   </data>

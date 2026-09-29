@@ -1847,6 +1847,36 @@ Selezione una scorciatoia diversa o chiudi l'applicazione che crea conflitto e r
   <data name="MainWindow_Vertically" xml:space="preserve">
     <value>Verticalmente</value>
   </data>
+  <data name="MainWindow_WorkspaceOpenImages" xml:space="preserve">
+    <value>Apri immagini…</value>
+  </data>
+  <data name="MainWindow_WorkspaceSelectImage" xml:space="preserve">
+    <value>Seleziona un’immagine dalla striscia di miniature o apri delle immagini per iniziare.</value>
+  </data>
+  <data name="MainWindow_WorkspacePreviousImage" xml:space="preserve">
+    <value>Immagine precedente</value>
+  </data>
+  <data name="MainWindow_WorkspaceNextImage" xml:space="preserve">
+    <value>Immagine successiva</value>
+  </data>
+  <data name="MainWindow_WorkspaceImages" xml:space="preserve">
+    <value>Immagini</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesMessage" xml:space="preserve">
+    <value>Sono presenti modifiche non salvate.
+
+Salvare le modifiche prima di chiudere l'editor di immagini?</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesTitle" xml:space="preserve">
+    <value>Conferma uscita</value>
+  </data>
+  <data name="MainWindow_WorkspaceLoadFailed" xml:space="preserve">
+    <value>Impossibile caricare il file immagine.
+{0}</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveAs" xml:space="preserve">
+    <value>Salva immagine con nome</value>
+  </data>
   <data name="MouseHighlighter" xml:space="preserve">
     <value>Evidenziatore del mouse</value>
   </data>

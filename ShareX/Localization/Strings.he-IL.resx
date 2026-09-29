@@ -1847,6 +1847,36 @@
   <data name="MainWindow_Vertically" xml:space="preserve">
     <value>אנכית</value>
   </data>
+  <data name="MainWindow_WorkspaceOpenImages" xml:space="preserve">
+    <value>פתיחת תמונות…</value>
+  </data>
+  <data name="MainWindow_WorkspaceSelectImage" xml:space="preserve">
+    <value>כדי להתחיל, יש לבחור תמונה מרצועת התמונות הממוזערות או לפתוח תמונות.</value>
+  </data>
+  <data name="MainWindow_WorkspacePreviousImage" xml:space="preserve">
+    <value>התמונה הקודמת</value>
+  </data>
+  <data name="MainWindow_WorkspaceNextImage" xml:space="preserve">
+    <value>התמונה הבאה</value>
+  </data>
+  <data name="MainWindow_WorkspaceImages" xml:space="preserve">
+    <value>תמונות</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesMessage" xml:space="preserve">
+    <value>יש שינויים שלא נשמרו.
+
+האם לשמור את השינויים לפני סגירת עורך התמונות?</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesTitle" xml:space="preserve">
+    <value>אישור יציאה</value>
+  </data>
+  <data name="MainWindow_WorkspaceLoadFailed" xml:space="preserve">
+    <value>טעינת קובץ התמונה נכשלה.
+{0}</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveAs" xml:space="preserve">
+    <value>שמירת תמונה בשם</value>
+  </data>
   <data name="MouseHighlighter" xml:space="preserve">
     <value>סימון עכבר</value>
   </data>

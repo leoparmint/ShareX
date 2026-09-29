@@ -1847,6 +1847,36 @@
   <data name="MainWindow_Vertically" xml:space="preserve">
     <value>垂直方向</value>
   </data>
+  <data name="MainWindow_WorkspaceOpenImages" xml:space="preserve">
+    <value>画像を開く…</value>
+  </data>
+  <data name="MainWindow_WorkspaceSelectImage" xml:space="preserve">
+    <value>開始するには、サムネイル一覧から画像を選択するか、画像を開いてください。</value>
+  </data>
+  <data name="MainWindow_WorkspacePreviousImage" xml:space="preserve">
+    <value>前の画像</value>
+  </data>
+  <data name="MainWindow_WorkspaceNextImage" xml:space="preserve">
+    <value>次の画像</value>
+  </data>
+  <data name="MainWindow_WorkspaceImages" xml:space="preserve">
+    <value>画像</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesMessage" xml:space="preserve">
+    <value>保存されていない変更があります。
+
+画像エディターを閉じる前に変更を保存しますか？</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesTitle" xml:space="preserve">
+    <value>終了の確認</value>
+  </data>
+  <data name="MainWindow_WorkspaceLoadFailed" xml:space="preserve">
+    <value>画像ファイルを読み込めませんでした。
+{0}</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveAs" xml:space="preserve">
+    <value>名前を付けて画像を保存</value>
+  </data>
   <data name="MouseHighlighter" xml:space="preserve">
     <value>マウスハイライター</value>
   </data>

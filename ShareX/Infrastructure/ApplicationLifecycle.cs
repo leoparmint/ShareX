@@ -40,6 +40,7 @@ internal static class ApplicationLifecycle
 {
     private static MainForm? _hotkeyHost;
     private static int _exitStarted;
+    private static bool _exitConfirmationPending;
     private static int _hostClosed;
     private static int _closeSequenceStarted;
     private static bool _restartRequested;
@@ -126,8 +127,29 @@ internal static class ApplicationLifecycle
 
     internal static void Exit()
     {
-        void ExitCore()
+        async void ExitCore()
         {
+            if (_exitConfirmationPending || Volatile.Read(ref _exitStarted) != 0) return;
+            _exitConfirmationPending = true;
+            try
+            {
+                if (!await MainWindowIntegration.ConfirmWorkspaceExitAsync())
+                {
+                    _restartRequested = false;
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                _restartRequested = false;
+                DebugHelper.WriteException(ex);
+                return;
+            }
+            finally
+            {
+                _exitConfirmationPending = false;
+            }
+
             if (Interlocked.Exchange(ref _exitStarted, 1) != 0)
             {
                 return;

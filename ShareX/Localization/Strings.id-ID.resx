@@ -1847,6 +1847,36 @@ Silakan pilih tombol cepat yang berbeda atau keluar dari aplikasi yang bertentan
   <data name="MainWindow_Vertically" xml:space="preserve">
     <value>Secara vertikal</value>
   </data>
+  <data name="MainWindow_WorkspaceOpenImages" xml:space="preserve">
+    <value>Buka gambar…</value>
+  </data>
+  <data name="MainWindow_WorkspaceSelectImage" xml:space="preserve">
+    <value>Pilih gambar dari deretan gambar mini, atau buka gambar untuk memulai.</value>
+  </data>
+  <data name="MainWindow_WorkspacePreviousImage" xml:space="preserve">
+    <value>Gambar sebelumnya</value>
+  </data>
+  <data name="MainWindow_WorkspaceNextImage" xml:space="preserve">
+    <value>Gambar berikutnya</value>
+  </data>
+  <data name="MainWindow_WorkspaceImages" xml:space="preserve">
+    <value>Gambar</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesMessage" xml:space="preserve">
+    <value>Ada perubahan yang belum disimpan.
+
+Simpan perubahan sebelum menutup editor gambar?</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesTitle" xml:space="preserve">
+    <value>Konfirmasi keluar</value>
+  </data>
+  <data name="MainWindow_WorkspaceLoadFailed" xml:space="preserve">
+    <value>Gagal memuat file gambar.
+{0}</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveAs" xml:space="preserve">
+    <value>Simpan gambar sebagai</value>
+  </data>
   <data name="MouseHighlighter" xml:space="preserve">
     <value>Penyorot mouse</value>
   </data>

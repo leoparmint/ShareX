@@ -33,6 +33,7 @@ using ShareX.Localization;
 using ShareX.UploadersLib;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace ShareX;
 
@@ -111,6 +112,9 @@ public static class MainWindowIntegration
             _isVisible = false;
         });
     }
+
+    internal static Task<bool> ConfirmWorkspaceExitAsync() =>
+        _window?.ConfirmWorkspaceExitAsync() ?? Task.FromResult(true);
 
     public static void SetTitle(string title) => RunOnUiThread(() =>
     {

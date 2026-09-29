@@ -1847,6 +1847,36 @@
   <data name="MainWindow_Vertically" xml:space="preserve">
     <value>Вертикально</value>
   </data>
+  <data name="MainWindow_WorkspaceOpenImages" xml:space="preserve">
+    <value>Открыть изображения…</value>
+  </data>
+  <data name="MainWindow_WorkspaceSelectImage" xml:space="preserve">
+    <value>Выберите изображение на ленте миниатюр или откройте изображения, чтобы начать.</value>
+  </data>
+  <data name="MainWindow_WorkspacePreviousImage" xml:space="preserve">
+    <value>Предыдущее изображение</value>
+  </data>
+  <data name="MainWindow_WorkspaceNextImage" xml:space="preserve">
+    <value>Следующее изображение</value>
+  </data>
+  <data name="MainWindow_WorkspaceImages" xml:space="preserve">
+    <value>Изображения</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesMessage" xml:space="preserve">
+    <value>Есть несохранённые изменения.
+
+Сохранить изменения перед закрытием редактора изображений?</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesTitle" xml:space="preserve">
+    <value>Подтверждение выхода</value>
+  </data>
+  <data name="MainWindow_WorkspaceLoadFailed" xml:space="preserve">
+    <value>Не удалось загрузить файл изображения.
+{0}</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveAs" xml:space="preserve">
+    <value>Сохранить изображение как</value>
+  </data>
   <data name="MouseHighlighter" xml:space="preserve">
     <value>Подсветка кликов мыши</value>
   </data>

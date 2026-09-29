@@ -1847,6 +1847,36 @@
   <data name="MainWindow_Vertically" xml:space="preserve">
     <value>垂直</value>
   </data>
+  <data name="MainWindow_WorkspaceOpenImages" xml:space="preserve">
+    <value>開啟圖片…</value>
+  </data>
+  <data name="MainWindow_WorkspaceSelectImage" xml:space="preserve">
+    <value>從縮圖列中選取圖片，或開啟圖片以開始。</value>
+  </data>
+  <data name="MainWindow_WorkspacePreviousImage" xml:space="preserve">
+    <value>上一張圖片</value>
+  </data>
+  <data name="MainWindow_WorkspaceNextImage" xml:space="preserve">
+    <value>下一張圖片</value>
+  </data>
+  <data name="MainWindow_WorkspaceImages" xml:space="preserve">
+    <value>圖片</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesMessage" xml:space="preserve">
+    <value>有尚未儲存的變更。
+
+關閉影像編輯器前要儲存變更嗎？</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesTitle" xml:space="preserve">
+    <value>結束確認</value>
+  </data>
+  <data name="MainWindow_WorkspaceLoadFailed" xml:space="preserve">
+    <value>無法載入影像檔案。
+{0}</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveAs" xml:space="preserve">
+    <value>影像另存新檔</value>
+  </data>
   <data name="MouseHighlighter" xml:space="preserve">
     <value>滑鼠螢光筆</value>
   </data>

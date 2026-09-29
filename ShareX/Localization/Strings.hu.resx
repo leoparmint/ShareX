@@ -1847,6 +1847,36 @@ Kérlek, válassz egy másik gyorsbillentyűt vagy zárd be a problémát okozó
   <data name="MainWindow_Vertically" xml:space="preserve">
     <value>Függőlegesen</value>
   </data>
+  <data name="MainWindow_WorkspaceOpenImages" xml:space="preserve">
+    <value>Képek megnyitása…</value>
+  </data>
+  <data name="MainWindow_WorkspaceSelectImage" xml:space="preserve">
+    <value>A kezdéshez válasszon egy képet a bélyegképsávból, vagy nyisson meg képeket.</value>
+  </data>
+  <data name="MainWindow_WorkspacePreviousImage" xml:space="preserve">
+    <value>Előző kép</value>
+  </data>
+  <data name="MainWindow_WorkspaceNextImage" xml:space="preserve">
+    <value>Következő kép</value>
+  </data>
+  <data name="MainWindow_WorkspaceImages" xml:space="preserve">
+    <value>Képek</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesMessage" xml:space="preserve">
+    <value>Nem mentett módosítások vannak.
+
+Szeretné menteni a módosításokat a képszerkesztő bezárása előtt?</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesTitle" xml:space="preserve">
+    <value>Kilépés megerősítése</value>
+  </data>
+  <data name="MainWindow_WorkspaceLoadFailed" xml:space="preserve">
+    <value>Nem sikerült betölteni a képfájlt.
+{0}</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveAs" xml:space="preserve">
+    <value>Kép mentése másként</value>
+  </data>
   <data name="MouseHighlighter" xml:space="preserve">
     <value>Egér kiemelő</value>
   </data>

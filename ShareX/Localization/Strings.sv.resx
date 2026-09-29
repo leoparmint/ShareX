@@ -1847,6 +1847,36 @@ Välj en annan snabbtangent eller avsluta programmet som orsakar konflikten och 
   <data name="MainWindow_Vertically" xml:space="preserve">
     <value>Lodrätt</value>
   </data>
+  <data name="MainWindow_WorkspaceOpenImages" xml:space="preserve">
+    <value>Öppna bilder…</value>
+  </data>
+  <data name="MainWindow_WorkspaceSelectImage" xml:space="preserve">
+    <value>Välj en bild från miniatyrremsan eller öppna bilder för att börja.</value>
+  </data>
+  <data name="MainWindow_WorkspacePreviousImage" xml:space="preserve">
+    <value>Föregående bild</value>
+  </data>
+  <data name="MainWindow_WorkspaceNextImage" xml:space="preserve">
+    <value>Nästa bild</value>
+  </data>
+  <data name="MainWindow_WorkspaceImages" xml:space="preserve">
+    <value>Bilder</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesMessage" xml:space="preserve">
+    <value>Det finns osparade ändringar.
+
+Vill du spara ändringarna innan bildredigeraren stängs?</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesTitle" xml:space="preserve">
+    <value>Bekräfta avslut</value>
+  </data>
+  <data name="MainWindow_WorkspaceLoadFailed" xml:space="preserve">
+    <value>Det gick inte att läsa in bildfilen.
+{0}</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveAs" xml:space="preserve">
+    <value>Spara bild som</value>
+  </data>
   <data name="MouseHighlighter" xml:space="preserve">
     <value>Musmarkering</value>
   </data>

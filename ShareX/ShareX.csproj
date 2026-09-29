@@ -62,6 +62,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <InternalsVisibleTo Include="ShareX.ImageWorkspace.Tests" />
+  </ItemGroup>
+  <ItemGroup>
     <RuntimeHostConfigurationOption Include="System.Globalization.UseNls" Value="true" />
   </ItemGroup>
 </Project>

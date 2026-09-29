@@ -1847,6 +1847,36 @@ Vui lòng chọn phím tắt khác hoặc thoát ứng dụng đang gây lỗi v
   <data name="MainWindow_Vertically" xml:space="preserve">
     <value>Theo chiều dọc</value>
   </data>
+  <data name="MainWindow_WorkspaceOpenImages" xml:space="preserve">
+    <value>Mở ảnh…</value>
+  </data>
+  <data name="MainWindow_WorkspaceSelectImage" xml:space="preserve">
+    <value>Chọn một ảnh từ dải ảnh thu nhỏ hoặc mở ảnh để bắt đầu.</value>
+  </data>
+  <data name="MainWindow_WorkspacePreviousImage" xml:space="preserve">
+    <value>Ảnh trước</value>
+  </data>
+  <data name="MainWindow_WorkspaceNextImage" xml:space="preserve">
+    <value>Ảnh tiếp theo</value>
+  </data>
+  <data name="MainWindow_WorkspaceImages" xml:space="preserve">
+    <value>Ảnh</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesMessage" xml:space="preserve">
+    <value>Có thay đổi chưa được lưu.
+
+Bạn có muốn lưu thay đổi trước khi đóng trình chỉnh sửa ảnh không?</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesTitle" xml:space="preserve">
+    <value>Xác nhận thoát</value>
+  </data>
+  <data name="MainWindow_WorkspaceLoadFailed" xml:space="preserve">
+    <value>Không thể tải tệp ảnh.
+{0}</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveAs" xml:space="preserve">
+    <value>Lưu ảnh thành</value>
+  </data>
   <data name="MouseHighlighter" xml:space="preserve">
     <value>Bút đánh dấu chuột</value>
   </data>

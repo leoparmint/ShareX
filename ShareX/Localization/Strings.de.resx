@@ -1847,6 +1847,36 @@ Bitte wähle ein anderes Tastenkürzel aus oder beende das widersprüchliche Pro
   <data name="MainWindow_Vertically" xml:space="preserve">
     <value>Vertikal</value>
   </data>
+  <data name="MainWindow_WorkspaceOpenImages" xml:space="preserve">
+    <value>Bilder öffnen…</value>
+  </data>
+  <data name="MainWindow_WorkspaceSelectImage" xml:space="preserve">
+    <value>Wählen Sie ein Bild aus der Miniaturansichtleiste oder öffnen Sie Bilder, um zu beginnen.</value>
+  </data>
+  <data name="MainWindow_WorkspacePreviousImage" xml:space="preserve">
+    <value>Vorheriges Bild</value>
+  </data>
+  <data name="MainWindow_WorkspaceNextImage" xml:space="preserve">
+    <value>Nächstes Bild</value>
+  </data>
+  <data name="MainWindow_WorkspaceImages" xml:space="preserve">
+    <value>Bilder</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesMessage" xml:space="preserve">
+    <value>Es gibt nicht gespeicherte Änderungen.
+
+Möchten Sie die Änderungen speichern, bevor Sie den Bildeditor schließen?</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesTitle" xml:space="preserve">
+    <value>Beenden bestätigen</value>
+  </data>
+  <data name="MainWindow_WorkspaceLoadFailed" xml:space="preserve">
+    <value>Bilddatei konnte nicht geladen werden.
+{0}</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveAs" xml:space="preserve">
+    <value>Bild speichern unter</value>
+  </data>
   <data name="MouseHighlighter" xml:space="preserve">
     <value>Mausklick-Hervorhebung</value>
   </data>

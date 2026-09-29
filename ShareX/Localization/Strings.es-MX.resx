@@ -1847,6 +1847,36 @@ Por favor seleccione un atajo de teclado diferente o salga de la aplicación que
   <data name="MainWindow_Vertically" xml:space="preserve">
     <value>Verticalmente</value>
   </data>
+  <data name="MainWindow_WorkspaceOpenImages" xml:space="preserve">
+    <value>Abrir imágenes…</value>
+  </data>
+  <data name="MainWindow_WorkspaceSelectImage" xml:space="preserve">
+    <value>Selecciona una imagen de la tira de miniaturas o abre imágenes para comenzar.</value>
+  </data>
+  <data name="MainWindow_WorkspacePreviousImage" xml:space="preserve">
+    <value>Imagen anterior</value>
+  </data>
+  <data name="MainWindow_WorkspaceNextImage" xml:space="preserve">
+    <value>Imagen siguiente</value>
+  </data>
+  <data name="MainWindow_WorkspaceImages" xml:space="preserve">
+    <value>Imágenes</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesMessage" xml:space="preserve">
+    <value>Hay cambios sin guardar.
+
+¿Desea guardar los cambios antes de cerrar el editor de imágenes?</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesTitle" xml:space="preserve">
+    <value>Confirmar salida</value>
+  </data>
+  <data name="MainWindow_WorkspaceLoadFailed" xml:space="preserve">
+    <value>No se pudo cargar el archivo de imagen.
+{0}</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveAs" xml:space="preserve">
+    <value>Guardar imagen como</value>
+  </data>
   <data name="MouseHighlighter" xml:space="preserve">
     <value>Resaltador del mouse</value>
   </data>

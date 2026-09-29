@@ -1847,6 +1847,36 @@ Veuillez sélectionner un raccourci différent ou quitter l'application en confl
   <data name="MainWindow_Vertically" xml:space="preserve">
     <value>Verticalement</value>
   </data>
+  <data name="MainWindow_WorkspaceOpenImages" xml:space="preserve">
+    <value>Ouvrir des images…</value>
+  </data>
+  <data name="MainWindow_WorkspaceSelectImage" xml:space="preserve">
+    <value>Sélectionnez une image dans la bande de miniatures ou ouvrez des images pour commencer.</value>
+  </data>
+  <data name="MainWindow_WorkspacePreviousImage" xml:space="preserve">
+    <value>Image précédente</value>
+  </data>
+  <data name="MainWindow_WorkspaceNextImage" xml:space="preserve">
+    <value>Image suivante</value>
+  </data>
+  <data name="MainWindow_WorkspaceImages" xml:space="preserve">
+    <value>Images</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesMessage" xml:space="preserve">
+    <value>Des modifications ne sont pas enregistrées.
+
+Voulez-vous les enregistrer avant de fermer l’éditeur d’images ?</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesTitle" xml:space="preserve">
+    <value>Confirmer la fermeture</value>
+  </data>
+  <data name="MainWindow_WorkspaceLoadFailed" xml:space="preserve">
+    <value>Impossible de charger le fichier image.
+{0}</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveAs" xml:space="preserve">
+    <value>Enregistrer l’image sous</value>
+  </data>
   <data name="MouseHighlighter" xml:space="preserve">
     <value>Surligneur de souris</value>
   </data>

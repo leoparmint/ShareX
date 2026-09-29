@@ -1847,6 +1847,36 @@ Proszę wybrać inny skrót klawiszowy lub zamknąć konfliktową aplikację i p
   <data name="MainWindow_Vertically" xml:space="preserve">
     <value>Pionowo</value>
   </data>
+  <data name="MainWindow_WorkspaceOpenImages" xml:space="preserve">
+    <value>Otwórz obrazy…</value>
+  </data>
+  <data name="MainWindow_WorkspaceSelectImage" xml:space="preserve">
+    <value>Wybierz obraz z paska miniatur lub otwórz obrazy, aby rozpocząć.</value>
+  </data>
+  <data name="MainWindow_WorkspacePreviousImage" xml:space="preserve">
+    <value>Poprzedni obraz</value>
+  </data>
+  <data name="MainWindow_WorkspaceNextImage" xml:space="preserve">
+    <value>Następny obraz</value>
+  </data>
+  <data name="MainWindow_WorkspaceImages" xml:space="preserve">
+    <value>Obrazy</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesMessage" xml:space="preserve">
+    <value>Istnieją niezapisane zmiany.
+
+Czy zapisać zmiany przed zamknięciem edytora obrazów?</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesTitle" xml:space="preserve">
+    <value>Potwierdzenie wyjścia</value>
+  </data>
+  <data name="MainWindow_WorkspaceLoadFailed" xml:space="preserve">
+    <value>Nie udało się wczytać pliku obrazu.
+{0}</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveAs" xml:space="preserve">
+    <value>Zapisz obraz jako</value>
+  </data>
   <data name="MouseHighlighter" xml:space="preserve">
     <value>Podświetlanie kliknięć myszy</value>
   </data>

@@ -1847,6 +1847,36 @@ Por favor, selecione uma tecla de atalho diferente ou feche o programa que está
   <data name="MainWindow_Vertically" xml:space="preserve">
     <value>Verticalmente</value>
   </data>
+  <data name="MainWindow_WorkspaceOpenImages" xml:space="preserve">
+    <value>Abrir imagens…</value>
+  </data>
+  <data name="MainWindow_WorkspaceSelectImage" xml:space="preserve">
+    <value>Selecione uma imagem na faixa de miniaturas ou abra imagens para começar.</value>
+  </data>
+  <data name="MainWindow_WorkspacePreviousImage" xml:space="preserve">
+    <value>Imagem anterior</value>
+  </data>
+  <data name="MainWindow_WorkspaceNextImage" xml:space="preserve">
+    <value>Imagem seguinte</value>
+  </data>
+  <data name="MainWindow_WorkspaceImages" xml:space="preserve">
+    <value>Imagens</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesMessage" xml:space="preserve">
+    <value>Existem alterações não guardadas.
+
+Pretende guardar as alterações antes de fechar o editor de imagens?</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesTitle" xml:space="preserve">
+    <value>Confirmar saída</value>
+  </data>
+  <data name="MainWindow_WorkspaceLoadFailed" xml:space="preserve">
+    <value>Não foi possível carregar o ficheiro de imagem.
+{0}</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveAs" xml:space="preserve">
+    <value>Guardar imagem como</value>
+  </data>
   <data name="MouseHighlighter" xml:space="preserve">
     <value>Marcador de rato</value>
   </data>

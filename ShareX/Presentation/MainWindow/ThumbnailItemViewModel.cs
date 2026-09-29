@@ -46,6 +46,7 @@ internal sealed class ThumbnailItemViewModel : INotifyPropertyChanged, IDisposab
     private int _refreshVersion;
     private Bitmap? _thumbnail;
     private bool _isSelected;
+    private bool _isActive;
     private string _title = string.Empty;
     private string _status = string.Empty;
     private string _details = string.Empty;
@@ -58,6 +59,13 @@ internal sealed class ThumbnailItemViewModel : INotifyPropertyChanged, IDisposab
     public WorkerTask Task { get; }
     public int Width => Math.Max(96, ApplicationState.Settings.ThumbnailSize.Width);
     public int Height => Math.Max(72, ApplicationState.Settings.ThumbnailSize.Height);
+    public int FilmstripWidth => Math.Clamp(Width, 96, 180);
+    public int FilmstripHeight => Math.Clamp(Height, 64, 100);
+    public bool IsActive
+    {
+        get => _isActive;
+        set => SetField(ref _isActive, value);
+    }
     public bool ShowTitle => ApplicationState.Settings.ShowThumbnailTitle;
     public bool ShowTitleAbove => ShowTitle && ApplicationState.Settings.ThumbnailTitleLocation == ThumbnailTitleLocation.Top;
     public bool ShowTitleBelow => ShowTitle && ApplicationState.Settings.ThumbnailTitleLocation == ThumbnailTitleLocation.Bottom;
@@ -214,6 +222,8 @@ internal sealed class ThumbnailItemViewModel : INotifyPropertyChanged, IDisposab
     {
         OnPropertyChanged(nameof(Width));
         OnPropertyChanged(nameof(Height));
+        OnPropertyChanged(nameof(FilmstripWidth));
+        OnPropertyChanged(nameof(FilmstripHeight));
         OnPropertyChanged(nameof(ShowTitle));
         OnPropertyChanged(nameof(ShowTitleAbove));
         OnPropertyChanged(nameof(ShowTitleBelow));

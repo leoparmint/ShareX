@@ -32,6 +32,24 @@ namespace ShareX.Localization {
 
         public static string TaskSettingsWindow_MouseHighlighterOptions => ResourceManager.GetString("TaskSettingsWindow_MouseHighlighterOptions", resourceCulture);
 
+        public static string MainWindow_WorkspaceOpenImages => ResourceManager.GetString("MainWindow_WorkspaceOpenImages", resourceCulture);
+
+        public static string MainWindow_WorkspaceSelectImage => ResourceManager.GetString("MainWindow_WorkspaceSelectImage", resourceCulture);
+
+        public static string MainWindow_WorkspacePreviousImage => ResourceManager.GetString("MainWindow_WorkspacePreviousImage", resourceCulture);
+
+        public static string MainWindow_WorkspaceNextImage => ResourceManager.GetString("MainWindow_WorkspaceNextImage", resourceCulture);
+
+        public static string MainWindow_WorkspaceImages => ResourceManager.GetString("MainWindow_WorkspaceImages", resourceCulture);
+
+        public static string MainWindow_WorkspaceSaveChangesMessage => ResourceManager.GetString("MainWindow_WorkspaceSaveChangesMessage", resourceCulture);
+
+        public static string MainWindow_WorkspaceSaveChangesTitle => ResourceManager.GetString("MainWindow_WorkspaceSaveChangesTitle", resourceCulture);
+
+        public static string MainWindow_WorkspaceLoadFailed => ResourceManager.GetString("MainWindow_WorkspaceLoadFailed", resourceCulture);
+
+        public static string MainWindow_WorkspaceSaveAs => ResourceManager.GetString("MainWindow_WorkspaceSaveAs", resourceCulture);
+
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;

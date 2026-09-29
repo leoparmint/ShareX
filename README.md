@@ -1,4 +1,6 @@
-## Image combiner grid fork
+## Image workspace and grid combiner fork
+
+The main window now includes a large **image editor above a horizontal thumbnail strip**. Click a thumbnail to edit it, use **Open images…** to load local files, and resize the strip by dragging the divider. See [image workspace instructions](IMAGE_WORKSPACE.md).
 
 This fork adds an explicit **Grid (rows and columns)** option under **Tools → Image combiner**. For 15 images, choose **3 images per row** for 5 rows of 3, or **5 images per row** for 3 rows of 5. The preview and row/column counts update as you change the layout.
 

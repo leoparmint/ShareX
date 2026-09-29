@@ -1847,6 +1847,36 @@ Vă rugăm să selectați o altă tastatură rapidă sau să ieșiți din aplica
   <data name="MainWindow_Vertically" xml:space="preserve">
     <value>Vertical</value>
   </data>
+  <data name="MainWindow_WorkspaceOpenImages" xml:space="preserve">
+    <value>Deschide imagini…</value>
+  </data>
+  <data name="MainWindow_WorkspaceSelectImage" xml:space="preserve">
+    <value>Selectați o imagine din banda de miniaturi sau deschideți imagini pentru a începe.</value>
+  </data>
+  <data name="MainWindow_WorkspacePreviousImage" xml:space="preserve">
+    <value>Imaginea precedentă</value>
+  </data>
+  <data name="MainWindow_WorkspaceNextImage" xml:space="preserve">
+    <value>Imaginea următoare</value>
+  </data>
+  <data name="MainWindow_WorkspaceImages" xml:space="preserve">
+    <value>Imagini</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesMessage" xml:space="preserve">
+    <value>Există modificări nesalvate.
+
+Doriți să salvați modificările înainte de a închide editorul de imagini?</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesTitle" xml:space="preserve">
+    <value>Confirmare ieșire</value>
+  </data>
+  <data name="MainWindow_WorkspaceLoadFailed" xml:space="preserve">
+    <value>Fișierul imagine nu a putut fi încărcat.
+{0}</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveAs" xml:space="preserve">
+    <value>Salvează imaginea ca</value>
+  </data>
   <data name="MouseHighlighter" xml:space="preserve">
     <value>Evidențiator mouse-ului</value>
   </data>

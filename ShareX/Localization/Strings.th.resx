@@ -1847,6 +1847,36 @@
   <data name="MainWindow_Vertically" xml:space="preserve">
     <value>ในแนวตั้ง</value>
   </data>
+  <data name="MainWindow_WorkspaceOpenImages" xml:space="preserve">
+    <value>เปิดภาพ…</value>
+  </data>
+  <data name="MainWindow_WorkspaceSelectImage" xml:space="preserve">
+    <value>เลือกภาพจากแถบภาพย่อ หรือเปิดภาพเพื่อเริ่มต้น</value>
+  </data>
+  <data name="MainWindow_WorkspacePreviousImage" xml:space="preserve">
+    <value>ภาพก่อนหน้า</value>
+  </data>
+  <data name="MainWindow_WorkspaceNextImage" xml:space="preserve">
+    <value>ภาพถัดไป</value>
+  </data>
+  <data name="MainWindow_WorkspaceImages" xml:space="preserve">
+    <value>ภาพ</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesMessage" xml:space="preserve">
+    <value>มีการเปลี่ยนแปลงที่ยังไม่ได้บันทึก
+
+ต้องการบันทึกการเปลี่ยนแปลงก่อนปิดตัวแก้ไขรูปภาพหรือไม่</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesTitle" xml:space="preserve">
+    <value>ออก การยืนยัน</value>
+  </data>
+  <data name="MainWindow_WorkspaceLoadFailed" xml:space="preserve">
+    <value>ไม่สามารถ โหลดรูปภาพ ไฟล์.
+{0}</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveAs" xml:space="preserve">
+    <value>บันทึกรูปภาพ เป็น</value>
+  </data>
   <data name="MouseHighlighter" xml:space="preserve">
     <value>ปากกาเน้นข้อความเมาส์</value>
   </data>

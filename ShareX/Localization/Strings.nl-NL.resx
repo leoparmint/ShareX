@@ -1847,6 +1847,36 @@ Gelieve een andere sneltoets te selecteren of sluit het conflicterende programma
   <data name="MainWindow_Vertically" xml:space="preserve">
     <value>Verticaal</value>
   </data>
+  <data name="MainWindow_WorkspaceOpenImages" xml:space="preserve">
+    <value>Afbeeldingen openen…</value>
+  </data>
+  <data name="MainWindow_WorkspaceSelectImage" xml:space="preserve">
+    <value>Selecteer een afbeelding uit de miniaturenbalk of open afbeeldingen om te beginnen.</value>
+  </data>
+  <data name="MainWindow_WorkspacePreviousImage" xml:space="preserve">
+    <value>Vorige afbeelding</value>
+  </data>
+  <data name="MainWindow_WorkspaceNextImage" xml:space="preserve">
+    <value>Volgende afbeelding</value>
+  </data>
+  <data name="MainWindow_WorkspaceImages" xml:space="preserve">
+    <value>Afbeeldingen</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesMessage" xml:space="preserve">
+    <value>Er zijn niet-opgeslagen wijzigingen.
+
+Wilt u de wijzigingen opslaan voordat u de afbeeldingseditor sluit?</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesTitle" xml:space="preserve">
+    <value>Afsluiten bevestigen</value>
+  </data>
+  <data name="MainWindow_WorkspaceLoadFailed" xml:space="preserve">
+    <value>Kan het afbeeldingsbestand niet laden.
+{0}</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveAs" xml:space="preserve">
+    <value>Afbeelding opslaan als</value>
+  </data>
   <data name="MouseHighlighter" xml:space="preserve">
     <value>Muisklikmarkering</value>
   </data>

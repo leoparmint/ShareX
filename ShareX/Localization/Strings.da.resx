@@ -1847,6 +1847,36 @@ Vælg en anden genvejstast, eller afslut det program, der forårsager konflikten
   <data name="MainWindow_Vertically" xml:space="preserve">
     <value>Lodret</value>
   </data>
+  <data name="MainWindow_WorkspaceOpenImages" xml:space="preserve">
+    <value>Åbn billeder…</value>
+  </data>
+  <data name="MainWindow_WorkspaceSelectImage" xml:space="preserve">
+    <value>Vælg et billede fra miniaturerækken, eller åbn billeder for at begynde.</value>
+  </data>
+  <data name="MainWindow_WorkspacePreviousImage" xml:space="preserve">
+    <value>Forrige billede</value>
+  </data>
+  <data name="MainWindow_WorkspaceNextImage" xml:space="preserve">
+    <value>Næste billede</value>
+  </data>
+  <data name="MainWindow_WorkspaceImages" xml:space="preserve">
+    <value>Billeder</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesMessage" xml:space="preserve">
+    <value>Der er ikke-gemte ændringer.
+
+Vil du gemme ændringerne, før billededitoren lukkes?</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesTitle" xml:space="preserve">
+    <value>Bekræft avslut</value>
+  </data>
+  <data name="MainWindow_WorkspaceLoadFailed" xml:space="preserve">
+    <value>Det var ikke muligt at indlæse billedfilen.
+{0}</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveAs" xml:space="preserve">
+    <value>Gem billede som</value>
+  </data>
   <data name="MouseHighlighter" xml:space="preserve">
     <value>Mus highlighter</value>
   </data>

@@ -106,6 +106,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         Icon = CreateWindowIcon();
         TitleBarIcon = CreateTitleBarIcon();
         DataContext = this;
+        InitializeImageWorkspace();
 
         _trayIconService.RightButtonDown += OnTrayIconRightButtonDown;
         _trayIconService.RightButtonUp += OnTrayIconRightButtonUp;
@@ -133,6 +134,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         KeyDown += OnWindowKeyDown;
 
         Dispatcher.UIThread.Post(WarmUpTrayMenu, DispatcherPriority.Background);
+        Loaded += (_, _) => TryActivateRecentImage();
     }
 
     public void ShowAndActivate()
@@ -362,12 +364,12 @@ public partial class MainWindow : Window, INotifyPropertyChanged
             return;
         }
 
-        MinHeight = windowHeight;
+        MinHeight = Math.Max(MinHeight, windowHeight);
 
         DrawingSize savedSize = ApplicationState.Settings.MainFormSize;
         if (!ApplicationState.Settings.RememberMainFormSize || savedSize.IsEmpty)
         {
-            Height = windowHeight;
+            Height = Math.Max(Height, windowHeight);
         }
     }
 
@@ -1039,7 +1041,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 
     private void AddTask(WorkerTask task)
     {
-        if (ThumbnailItems.Any(x => ReferenceEquals(x.Task, task)))
+        if (_disposed || ThumbnailItems.Any(x => ReferenceEquals(x.Task, task)))
         {
             return;
         }
@@ -1048,10 +1050,12 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         ThumbnailItems.Insert(0, item);
 
         NotifyTaskCollectionChanged();
+        if (IsLoaded) TryActivateRecentImage();
     }
 
     private void OnTaskRemoved(WorkerTask task) => Dispatcher.UIThread.Post(() =>
     {
+        if (_disposed) return;
         ThumbnailItemViewModel? item = ThumbnailItems.FirstOrDefault(x => ReferenceEquals(x.Task, task));
         if (item != null)
         {
@@ -1062,15 +1066,28 @@ public partial class MainWindow : Window, INotifyPropertyChanged
             }
 
             ThumbnailItems.Remove(item);
+            if (ReferenceEquals(_activeImageItem, item))
+            {
+                // Retain unsaved work if a task is removed by an external caller.
+                SetActiveImageItem(null);
+                if (!_imageWorkspace.IsDirty)
+                {
+                    _imageWorkspace.ClearImage();
+                    _lastAutomaticImage = null;
+                }
+            }
             item.Dispose();
         }
 
         NotifyTaskCollectionChanged();
+        if (!_imageWorkspace.HasImage) Dispatcher.UIThread.Post(TryActivateRecentImage, DispatcherPriority.Background);
     });
 
     private void OnTaskChanged(WorkerTask task) => Dispatcher.UIThread.Post(() =>
     {
+        if (_disposed) return;
         ThumbnailItems.FirstOrDefault(x => ReferenceEquals(x.Task, task))?.Refresh();
+        TryActivateRecentImage();
     });
 
     private void OnTaskImageReady(WorkerTask task, DrawingBitmap image)
@@ -1123,6 +1140,8 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     private void NotifyTaskCollectionChanged()
     {
         OnPropertyChanged(nameof(IsEmpty));
+        OnPropertyChanged(nameof(WorkspaceImageCount));
+        NotifyWorkspaceNavigation();
     }
 
     private void RefreshHotkeyTips()
@@ -1169,6 +1188,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         {
             _selectionOrder.Remove(item);
         }
+        OnPropertyChanged(nameof(CanCombineWorkspaceImages));
     }
 
     private void ClearSelection()
@@ -1179,6 +1199,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         }
 
         _selectionOrder.Clear();
+        OnPropertyChanged(nameof(CanCombineWorkspaceImages));
     }
 
     private void SelectOnly(ThumbnailItemViewModel selected)
@@ -1197,6 +1218,8 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 
         PointerPoint point = e.GetCurrentPoint(control);
         int index = ThumbnailItems.IndexOf(item);
+        ++_workspaceSelectionInteraction;
+        FilmstripPanel.Focus();
 
         if (point.Properties.PointerUpdateKind == PointerUpdateKind.RightButtonPressed)
         {
@@ -1316,7 +1339,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         }
     }
 
-    private void OnThumbnailPointerReleased(object? sender, PointerReleasedEventArgs e)
+    private async void OnThumbnailPointerReleased(object? sender, PointerReleasedEventArgs e)
     {
         if (sender is not Control control || control.DataContext is not ThumbnailItemViewModel item)
         {
@@ -1331,10 +1354,17 @@ public partial class MainWindow : Window, INotifyPropertyChanged
             ResetThumbnailDrag();
 
             if (!wasDragging &&
-                !_suppressThumbnailClickAction &&
-                ApplicationState.Settings.ThumbnailClickAction != ThumbnailViewClickAction.Select)
+                !_suppressThumbnailClickAction)
             {
-                ExecuteThumbnailClick(item, ApplicationState.Settings.ThumbnailClickAction);
+                e.Handled = true;
+                if (IsWorkspaceImage(item))
+                {
+                    await ActivateWorkspaceImageAsync(item);
+                }
+                else if (ApplicationState.Settings.ThumbnailClickAction != ThumbnailViewClickAction.Select)
+                {
+                    ExecuteThumbnailClick(item, ApplicationState.Settings.ThumbnailClickAction);
+                }
             }
 
             e.Handled = true;
@@ -1408,10 +1438,10 @@ public partial class MainWindow : Window, INotifyPropertyChanged
     private void OnThumbnailDoubleTapped(object? sender, TappedEventArgs e)
     {
         if (sender is Control { DataContext: ThumbnailItemViewModel item } &&
-            !_suppressThumbnailClickAction &&
-            ApplicationState.Settings.ThumbnailClickAction == ThumbnailViewClickAction.Select)
+            !_suppressThumbnailClickAction)
         {
-            ExecuteThumbnailClick(item, ThumbnailViewClickAction.OpenFile);
+            ExecuteThumbnailClick(item, IsWorkspaceImage(item)
+                ? ThumbnailViewClickAction.OpenImageViewer : ThumbnailViewClickAction.OpenFile);
             e.Handled = true;
         }
     }
@@ -1491,7 +1521,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
             Item(Strings.MainWindow_DownloadSelectedUrl, LucideIcons.download, _uploadInfoManager.Download,
                 hasSelection && !isWorking && selected!.IsFileURL,
                 new KeyGesture(Key.D, KeyModifiers.Control)),
-            Item(Strings.MainWindow_EditImage, LucideIcons.image, _uploadInfoManager.EditImage,
+            Item(Strings.MainWindow_EditImage, LucideIcons.image, EditSelectedWorkspaceImage,
                 hasSelection && !isWorking && selected!.IsImageFile,
                 new KeyGesture(Key.E, KeyModifiers.Control)),
             Item(Strings.MainWindow_ResizeImage, LucideIcons.maximize_2, _uploadInfoManager.ResizeImages,
@@ -1634,22 +1664,27 @@ public partial class MainWindow : Window, INotifyPropertyChanged
             Item(Strings.MainWindow_Vertically, LucideIcons.columns_2, () => _uploadInfoManager.CombineImages(FormsOrientation.Vertical))
     };
 
-    private void RemoveSelectedTasks()
+    private async void RemoveSelectedTasks()
     {
-        foreach (WorkerTask task in GetSelectedItems().Select(x => x.Task).ToArray())
+        ThumbnailItemViewModel[] items = GetSelectedItems().ToArray();
+        if (!await ConfirmRemovingWorkspaceItemsAsync(items)) return;
+        foreach (WorkerTask task in items.Select(x => x.Task))
         {
             TaskManager.Remove(task);
         }
     }
 
-    private void DeleteSelectedFiles()
+    private async void DeleteSelectedFiles()
     {
+        ThumbnailItemViewModel[] items = GetSelectedItems().ToArray();
         if (MessageBox.Show(Strings.MainForm_tsmiDeleteSelectedFile_Click_Do_you_really_want_to_delete_this_file_,
             "ShareX - " + Strings.MainForm_tsmiDeleteSelectedFile_Click_File_delete_confirmation,
             MessageBoxButtons.YesNo) == MessageBoxResult.Yes)
         {
+            if (!await ConfirmRemovingWorkspaceItemsAsync(items)) return;
+            _uploadInfoManager.UpdateSelectedItems(items.Select(x => x.Task));
             _uploadInfoManager.DeleteFiles();
-            RemoveSelectedTasks();
+            foreach (ThumbnailItemViewModel item in items) TaskManager.Remove(item.Task);
         }
     }
 
@@ -1705,8 +1740,9 @@ public partial class MainWindow : Window, INotifyPropertyChanged
             "ShareX - " + Strings.MainWindow_RemoteDeletion);
     }
 
-    private void ClearTasks()
+    private async void ClearTasks()
     {
+        if (!await ConfirmRemovingWorkspaceItemsAsync(ThumbnailItems.ToArray())) return;
         foreach (WorkerTask task in TaskManager.Tasks.ToArray())
         {
             TaskManager.Remove(task);
@@ -1717,6 +1753,8 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 
     private void OnMainContentPointerPressed(object? sender, PointerPressedEventArgs e)
     {
+        ++_workspaceSelectionInteraction;
+        FilmstripPanel.Focus();
         PointerUpdateKind pointerUpdateKind = e.GetCurrentPoint(this).Properties.PointerUpdateKind;
 
         if (pointerUpdateKind == PointerUpdateKind.LeftButtonPressed)
@@ -1760,6 +1798,23 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 
     private void OnWindowKeyDown(object? sender, KeyEventArgs e)
     {
+        if (e.Handled || _imageWorkspace.IsBusy) return;
+        if (e.Key == Key.O && e.KeyModifiers == KeyModifiers.Control)
+        {
+            OnOpenWorkspaceImages(this, new RoutedEventArgs());
+            e.Handled = true;
+            return;
+        }
+        if (_imageWorkspace.IsKeyboardFocusWithin) return;
+        if (e.Key == Key.Left || e.Key == Key.Right)
+        {
+            if (e.KeyModifiers == KeyModifiers.None)
+            {
+                _ = NavigateWorkspaceAsync(e.Key == Key.Left ? -1 : 1);
+                e.Handled = true;
+            }
+            return;
+        }
         _uploadInfoManager.UpdateSelectedItems(GetSelectedItems().Select(x => x.Task));
         bool control = e.KeyModifiers.HasFlag(KeyModifiers.Control);
         bool shift = e.KeyModifiers.HasFlag(KeyModifiers.Shift);
@@ -1775,7 +1830,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         else if (e.Key == Key.V && control) UploadManager.ClipboardUploadMainWindow();
         else if (e.Key == Key.U && control) _uploadInfoManager.Upload();
         else if (e.Key == Key.D && control) _uploadInfoManager.Download();
-        else if (e.Key == Key.E && control) _uploadInfoManager.EditImage();
+        else if (e.Key == Key.E && control) EditSelectedWorkspaceImage();
         else if (e.Key == Key.P && control) _uploadInfoManager.PinToScreen();
         else if (e.Key == Key.Delete && shift) DeleteSelectedFiles();
         else if (e.Key == Key.Delete) RemoveSelectedTasks();
@@ -1823,8 +1878,10 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 
         if (hasFiles)
         {
-            DropOverlayTitle.Text = Strings.MainWindow_ReleaseToUploadFiles;
-            DropOverlayDescription.Text = Strings.MainWindow_FilesDroppedUploadDescription;
+            bool imagesOnly = e.DataTransfer.TryGetFiles()?.All(x =>
+                x.TryGetLocalPath() is string path && FileHelpers.IsImageFile(path)) == true;
+            DropOverlayTitle.Text = imagesOnly ? Strings.MainWindow_WorkspaceOpenImages : Strings.MainWindow_ReleaseToUploadFiles;
+            DropOverlayDescription.Text = imagesOnly ? Strings.MainWindow_WorkspaceSelectImage : Strings.MainWindow_FilesDroppedUploadDescription;
         }
         else if (hasText)
         {
@@ -1835,7 +1892,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
         e.Handled = true;
     }
 
-    private void OnDrop(object? sender, DragEventArgs e)
+    private async void OnDrop(object? sender, DragEventArgs e)
     {
         DropOverlay.IsVisible = false;
 
@@ -1855,6 +1912,12 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 
         if (files.Length > 0)
         {
+            if (files.All(FileHelpers.IsImageFile))
+            {
+                e.Handled = true;
+                await ImportWorkspaceImagesAsync(files);
+                return;
+            }
             dataObject.SetData(FormsDataFormats.FileDrop, files);
         }
 
@@ -2058,6 +2121,7 @@ public partial class MainWindow : Window, INotifyPropertyChanged
 
         SaveWindowBounds();
         _disposed = true;
+        _imageWorkspace.Dispose();
         TaskManager.TaskAdded -= OnTaskAdded;
         TaskManager.TaskRemoved -= OnTaskRemoved;
         TaskManager.TaskChanged -= OnTaskChanged;

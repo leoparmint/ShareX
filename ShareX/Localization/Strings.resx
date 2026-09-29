@@ -1847,6 +1847,36 @@ Please select a different hotkey or quit the conflicting application and reopen 
   <data name="MainWindow_Vertically" xml:space="preserve">
     <value>Vertically</value>
   </data>
+  <data name="MainWindow_WorkspaceOpenImages" xml:space="preserve">
+    <value>Open images…</value>
+  </data>
+  <data name="MainWindow_WorkspaceSelectImage" xml:space="preserve">
+    <value>Select an image from the strip, or open images to begin.</value>
+  </data>
+  <data name="MainWindow_WorkspacePreviousImage" xml:space="preserve">
+    <value>Previous image</value>
+  </data>
+  <data name="MainWindow_WorkspaceNextImage" xml:space="preserve">
+    <value>Next image</value>
+  </data>
+  <data name="MainWindow_WorkspaceImages" xml:space="preserve">
+    <value>Images</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesMessage" xml:space="preserve">
+    <value>There are unsaved changes.
+
+Would you like to save the changes before closing the image editor?</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveChangesTitle" xml:space="preserve">
+    <value>Exit Confirmation</value>
+  </data>
+  <data name="MainWindow_WorkspaceLoadFailed" xml:space="preserve">
+    <value>Failed to load image file.
+{0}</value>
+  </data>
+  <data name="MainWindow_WorkspaceSaveAs" xml:space="preserve">
+    <value>Save image as</value>
+  </data>
   <data name="MouseHighlighter" xml:space="preserve">
     <value>Mouse highlighter</value>
   </data>

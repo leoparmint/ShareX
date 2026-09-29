@@ -7,9 +7,9 @@
         x:Class="ShareX.MainWindow"
         x:CompileBindings="False"
         Title="ShareX"
-        Width="900"
-        Height="720"
-        MinWidth="760"
+        Width="1280"
+        Height="850"
+        MinWidth="960" MinHeight="650"
         ExtendClientAreaToDecorationsHint="True"
         ExtendClientAreaTitleBarHeightHint="38"
         WindowDecorations="BorderOnly"
@@ -50,6 +50,11 @@
             <Setter Property="Background" Value="{DynamicResource ShareX.Brush.Control.Background.Hover}"/>
             <Setter Property="BorderBrush" Value="{DynamicResource ShareX.Brush.Accent.Start}"/>
             <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+        <Style Selector="Border.thumbnail-card.active">
+            <Setter Property="BorderBrush" Value="{DynamicResource ShareX.Brush.Accent.Start}"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="3"/>
         </Style>
         <Style Selector="Border.thumbnail-preview.clickable">
             <Setter Property="Cursor" Value="Hand"/>
@@ -203,32 +208,88 @@
             </ScrollViewer>
         </Border>
 
-        <Grid Grid.Column="1"
-              PointerPressed="OnMainContentPointerPressed"
-              PointerReleased="OnMainContentPointerReleased">
-                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                    <ItemsControl ItemsSource="{Binding ThumbnailItems}" Margin="6">
+        <Grid Grid.Column="1" Margin="8,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" MinHeight="220"/>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="180" MinHeight="130" MaxHeight="300"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" ColumnDefinitions="Auto,*,Auto,Auto,Auto" ColumnSpacing="8" Margin="4,8,12,8">
+                <Button Grid.Column="0" Click="OnOpenWorkspaceImages">
+                    <StackPanel Orientation="Horizontal" Spacing="8">
+                        <TextBlock Classes="icon" Text="{x:Static theming:LucideIcons.folder_open}"/>
+                        <TextBlock Text="{x:Static res:Strings.MainWindow_WorkspaceOpenImages}"/>
+                    </StackPanel>
+                </Button>
+                <TextBlock Grid.Column="1" Text="{Binding WorkspaceTitle}" TextTrimming="CharacterEllipsis"
+                           VerticalAlignment="Center" Margin="8,0"/>
+                <Button Grid.Column="2" Click="OnPreviousWorkspaceImage" IsEnabled="{Binding CanShowPreviousWorkspaceImage}"
+                        ToolTip.Tip="{x:Static res:Strings.MainWindow_WorkspacePreviousImage}"
+                        AutomationProperties.Name="{x:Static res:Strings.MainWindow_WorkspacePreviousImage}">
+                    <TextBlock Classes="icon" Text="{x:Static theming:LucideIcons.chevron_left}"/>
+                </Button>
+                <Button Grid.Column="3" Click="OnNextWorkspaceImage" IsEnabled="{Binding CanShowNextWorkspaceImage}"
+                        ToolTip.Tip="{x:Static res:Strings.MainWindow_WorkspaceNextImage}"
+                        AutomationProperties.Name="{x:Static res:Strings.MainWindow_WorkspaceNextImage}">
+                    <TextBlock Classes="icon" Text="{x:Static theming:LucideIcons.chevron_right}"/>
+                </Button>
+                <Button Grid.Column="4" Click="OnCombineWorkspaceImages" IsEnabled="{Binding CanCombineWorkspaceImages}">
+                    <TextBlock Text="{x:Static res:Strings.MainWindow_CombineImages}"/>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="1" ClipToBounds="True">
+                <ContentControl x:Name="WorkspaceHost" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"/>
+                <StackPanel IsVisible="{Binding !HasWorkspaceImage}" Spacing="20"
+                            HorizontalAlignment="Center" VerticalAlignment="Center" Margin="32" MaxWidth="480">
+                    <TextBlock Text="{x:Static res:Strings.MainWindow_WorkspaceSelectImage}" TextWrapping="Wrap"
+                               TextAlignment="Center" Foreground="{DynamicResource ShareX.Brush.Text.Secondary}"/>
+                    <Expander IsVisible="{Binding IsEmpty}" Header="{x:Static res:Strings.MainWindow_ShareXHotkeys}"
+                              ToolTip.Tip="{x:Static res:Strings.MainWindow_HotkeyHint}">
+                        <ScrollViewer MaxHeight="180">
+                            <ItemsControl ItemsSource="{Binding HotkeyTips}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate DataType="local:HotkeyTipViewModel">
+                                        <Grid ColumnDefinitions="140,*" ColumnSpacing="10" Margin="0,4">
+                                            <TextBlock Text="{Binding Hotkey}"/>
+                                            <TextBlock Grid.Column="1" Text="{Binding Description}" TextWrapping="Wrap"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Expander>
+                </StackPanel>
+            </Grid>
+            <GridSplitter Grid.Row="2" ResizeDirection="Rows" HorizontalAlignment="Stretch"
+                          Background="{DynamicResource ShareX.Brush.Border}"/>
+            <Grid x:Name="FilmstripPanel" Grid.Row="3" RowDefinitions="Auto,*" Background="{DynamicResource ShareX.Brush.Background.Panel}"
+                  Focusable="True" PointerPressed="OnMainContentPointerPressed" PointerReleased="OnMainContentPointerReleased">
+                <StackPanel Orientation="Horizontal" Spacing="8" Margin="10,6,10,0">
+                    <TextBlock Text="{x:Static res:Strings.MainWindow_WorkspaceImages}"/>
+                    <TextBlock Text="{Binding WorkspaceImageCount}" Foreground="{DynamicResource ShareX.Brush.Text.Secondary}"/>
+                </StackPanel>
+                <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                    <ItemsControl x:Name="FilmstripItems" ItemsSource="{Binding ThumbnailItems}" Margin="6">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <WrapPanel Orientation="Horizontal"/>
+                                <StackPanel Orientation="Horizontal"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate DataType="local:ThumbnailItemViewModel">
                                 <Border Classes="thumbnail-card"
-                                        Classes.selected="{Binding IsSelected}"
+                                        Classes.selected="{Binding IsSelected}" Classes.active="{Binding IsActive}"
                                         PointerPressed="OnThumbnailPointerPressed"
                                         PointerMoved="OnThumbnailPointerMoved"
                                         PointerReleased="OnThumbnailPointerReleased"
                                         PointerCaptureLost="OnThumbnailPointerCaptureLost"
                                         DoubleTapped="OnThumbnailDoubleTapped">
-                                    <StackPanel Width="{Binding Width}" Spacing="3">
-                                        <Border Width="{Binding Width}"
+                                    <StackPanel Width="{Binding FilmstripWidth}" Spacing="3">
+                                        <Border Width="{Binding FilmstripWidth}"
                                                 IsVisible="{Binding ShowTitleAbove}"
                                                 Background="Transparent"
-                                                Cursor="Hand"
-                                                PointerPressed="OnThumbnailTitlePointerPressed"
-                                                PointerReleased="OnThumbnailTitlePointerReleased">
+                                                Cursor="Hand">
                                             <ToolTip.Tip>
                                                 <TextBlock Text="{Binding Details}"
                                                            FontWeight="Normal"
@@ -244,8 +305,8 @@
                                         </Border>
                                         <Border Classes="thumbnail-preview"
                                                 Classes.clickable="{Binding IsClickable}"
-                                                Width="{Binding Width}"
-                                                Height="{Binding Height}"
+                                                Width="{Binding FilmstripWidth}"
+                                                Height="{Binding FilmstripHeight}"
                                                 Background="{DynamicResource ShareX.Brush.Background.Panel}"
                                                 CornerRadius="4"
                                                 ClipToBounds="True">
@@ -356,12 +417,10 @@
                                                 </Border>
                                             </Grid>
                                         </Border>
-                                        <Border Width="{Binding Width}"
+                                        <Border Width="{Binding FilmstripWidth}"
                                                 IsVisible="{Binding ShowTitleBelow}"
                                                 Background="Transparent"
-                                                Cursor="Hand"
-                                                PointerPressed="OnThumbnailTitlePointerPressed"
-                                                PointerReleased="OnThumbnailTitlePointerReleased">
+                                                Cursor="Hand">
                                             <ToolTip.Tip>
                                                 <TextBlock Text="{Binding Details}"
                                                            FontWeight="Normal"
@@ -381,65 +440,8 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </ScrollViewer>
-
-                <Grid IsVisible="{Binding IsEmpty}" Margin="28">
-                    <Border Classes="hotkey-panel"
-                            Width="530"
-                            MaxHeight="430"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
-                        <Grid RowDefinitions="Auto,Auto,*" RowSpacing="8">
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="9">
-                                <TextBlock Classes="icon" Text="{x:Static theming:LucideIcons.keyboard}" FontSize="22" Foreground="{DynamicResource ShareX.Brush.Accent.Start}"/>
-                                <TextBlock Text="{x:Static res:Strings.MainWindow_ShareXHotkeys}" FontSize="19" FontWeight="SemiBold" Foreground="{DynamicResource ShareX.Brush.Text}"/>
-                            </StackPanel>
-                            <TextBlock Grid.Row="1"
-                                       Text="{x:Static res:Strings.MainWindow_HotkeyHint}"
-                                       TextAlignment="Center"
-                                       FontWeight="Normal"
-                                       TextWrapping="Wrap"
-                                       Margin="8,0,8,8"/>
-                            <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
-                                <ItemsControl ItemsSource="{Binding HotkeyTips}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate DataType="local:HotkeyTipViewModel">
-                                            <Border BorderBrush="{DynamicResource ShareX.Brush.Border}" BorderThickness="0,1,0,0" Padding="6,8">
-                                                <Grid ColumnDefinitions="24,155,*" ColumnSpacing="10">
-                                                    <TextBlock Classes="icon"
-                                                               Text="{x:Static theming:LucideIcons.circle_check}"
-                                                               IsVisible="{Binding IsRegistered}"
-                                                               Foreground="{DynamicResource ShareX.Brush.Accent.Start}"
-                                                               FontSize="17"
-                                                               HorizontalAlignment="Center"
-                                                               VerticalAlignment="Center"/>
-                                                    <TextBlock Classes="icon"
-                                                               Text="{x:Static theming:LucideIcons.circle_x}"
-                                                               IsVisible="{Binding !IsRegistered}"
-                                                               Foreground="#C65F5F"
-                                                               FontSize="17"
-                                                               HorizontalAlignment="Center"
-                                                               VerticalAlignment="Center"/>
-                                                    <TextBlock Grid.Column="1"
-                                                               Text="{Binding Hotkey}"
-                                                               FontFamily="{DynamicResource ShareX.FontFamily.Monospace}"
-                                                               FontWeight="Normal"
-                                                               VerticalAlignment="Center"/>
-                                                    <TextBlock Grid.Column="2"
-                                                               Text="{Binding Description}"
-                                                               FontWeight="Normal"
-                                                               TextTrimming="CharacterEllipsis"
-                                                               VerticalAlignment="Center"/>
-                                                </Grid>
-                                            </Border>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </ScrollViewer>
-                        </Grid>
-                    </Border>
-                </Grid>
+            </Grid>
         </Grid>
-
         <Border x:Name="DropOverlay"
                 Grid.ColumnSpan="2"
                 IsVisible="False"

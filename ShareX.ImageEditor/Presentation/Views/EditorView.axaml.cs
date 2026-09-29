@@ -202,6 +202,12 @@ namespace ShareX.ImageEditor.Presentation.Views
             set => SetValue(UseBuiltInToolbarsProperty, value);
         }
 
+        /// <summary>Limits shortcuts to this editor when hosted alongside other controls.</summary>
+        public bool RestrictShortcutsToFocus { get; set; }
+
+        /// <summary>Lets an embedded host guard document replacement itself.</summary>
+        public bool AllowDocumentReplacement { get; set; } = true;
+
         protected override void OnPropertyChanged(AvaloniaPropertyChangedEventArgs change)
         {
             base.OnPropertyChanged(change);
@@ -1303,6 +1309,7 @@ namespace ShareX.ImageEditor.Presentation.Views
 
         private void OnKeyDown(object? sender, KeyEventArgs e)
         {
+            if (RestrictShortcutsToFocus && !IsKeyboardFocusWithin) return;
             _inputController.OnKeyDown(sender ?? this, e);
 
             // Skip shortcuts when the user is typing in a text field
@@ -1395,8 +1402,8 @@ namespace ShareX.ImageEditor.Presentation.Views
                         case Key.V: vm.PasteCommand.Execute(null); e.Handled = true; break;
                         case Key.D: DuplicateSelectedAnnotation(); e.Handled = true; break;
                         case Key.S: vm.SaveCommand.Execute(null); e.Handled = true; break;
-                        case Key.N: vm.NewImageCommand.Execute(null); e.Handled = true; break;
-                        case Key.O: vm.OpenImageCommand.Execute(null); e.Handled = true; break;
+                        case Key.N when AllowDocumentReplacement: vm.NewImageCommand.Execute(null); e.Handled = true; break;
+                        case Key.O when AllowDocumentReplacement: vm.OpenImageCommand.Execute(null); e.Handled = true; break;
                         case Key.P:
                             if (vm.PinToScreenCommand.CanExecute(null))
                             {
@@ -1467,6 +1474,7 @@ namespace ShareX.ImageEditor.Presentation.Views
 
         private void OnKeyUp(object? sender, KeyEventArgs e)
         {
+            if (RestrictShortcutsToFocus && !IsKeyboardFocusWithin) return;
             _inputController.OnKeyUp(sender ?? this, e);
 
             if (DataContext is MainViewModel vm && e.Key == Key.Escape && e.KeyModifiers == KeyModifiers.None)
@@ -1518,7 +1526,7 @@ namespace ShareX.ImageEditor.Presentation.Views
                             vm2.CancelCommand.Execute(null);
                             e.Handled = true;
                         }
-                        else
+                        else if (AllowDocumentReplacement)
                         {
                             vm2.ExitEditorCommand.Execute(null);
                             e.Handled = true;
@@ -1861,6 +1869,7 @@ namespace ShareX.ImageEditor.Presentation.Views
 
         private void OnNewImageRequested(object? sender, EventArgs e)
         {
+            if (!AllowDocumentReplacement) return;
             if (DataContext is not MainViewModel vm)
             {
                 return;
@@ -1922,6 +1931,7 @@ namespace ShareX.ImageEditor.Presentation.Views
 
         private async void OnOpenImageRequested(object? sender, EventArgs e)
         {
+            if (!AllowDocumentReplacement) return;
             if (DataContext is not MainViewModel vm)
             {
                 return;
@@ -1959,6 +1969,7 @@ namespace ShareX.ImageEditor.Presentation.Views
 
         private void OnStartScreenRequested(object? sender, EventArgs e)
         {
+            if (!AllowDocumentReplacement) return;
             if (DataContext is not MainViewModel vm) return;
 
             EnsureStartScreenDialog(vm);
@@ -2058,6 +2069,7 @@ namespace ShareX.ImageEditor.Presentation.Views
 
         private async void OnLoadFromClipboardRequested(object? sender, EventArgs e)
         {
+            if (!AllowDocumentReplacement) return;
             if (DataContext is not MainViewModel vm) return;
 
             var topLevel = TopLevel.GetTopLevel(this);
@@ -2130,6 +2142,7 @@ namespace ShareX.ImageEditor.Presentation.Views
 
         private async void OnLoadFromUrlRequested(object? sender, string url)
         {
+            if (!AllowDocumentReplacement) return;
             if (DataContext is not MainViewModel vm) return;
 
             StartScreenDialogViewModel? startScreenDialog = vm.ModalContent as StartScreenDialogViewModel;
@@ -2170,6 +2183,7 @@ namespace ShareX.ImageEditor.Presentation.Views
 
         private void OnLoadRecentFileRequested(object? sender, string filePath)
         {
+            if (!AllowDocumentReplacement) return;
             if (DataContext is not MainViewModel vm) return;
 
             if (!File.Exists(filePath))
